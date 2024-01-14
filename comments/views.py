@@ -1,6 +1,5 @@
 
-from django.http import Http404
-from rest_framework import filters, generics, permissions
+from rest_framework import generics, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Comment
 from .serializers import CommentSerializer, CommentDetailSerializer
@@ -11,7 +10,7 @@ class CommentList(generics.ListCreateAPIView):
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
     ]
-    Queryset = Comment.objects.all()
+    queryset = Comment.objects.all()
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['post']
 
