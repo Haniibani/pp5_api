@@ -1,5 +1,5 @@
 from django.db.models import Count
-from rest_framework import filter, generics, permissions
+from rest_framework import filters, generics, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Profile
 from .serializers import ProfileSerializer
