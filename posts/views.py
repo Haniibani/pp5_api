@@ -1,10 +1,9 @@
 from django.db.models import Count
 from rest_framework import filters, permissions, generics
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Post
+from .models import Post, Tag
 from .serializers import PostSerializer
 from pp5_api.permissions import IsOwnerOrReadOnly
-
 
 class PostList(generics.ListCreateAPIView):
 
@@ -35,8 +34,10 @@ class PostList(generics.ListCreateAPIView):
     ]
 
     def perform_create(self, serializer):
+        tags_data = self.request.data.getlist('tags', [])  # Use getlist to get multiple values
+        tags = [Tag.objects.get_or_create(name=tag_name)[0] for tag_name in tags_data]
         serializer.save(owner=self.request.user)
-
+        serializer.instance.tags.set(tags)
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
 
