@@ -15,7 +15,6 @@ class Tag(models.Model):
             'Food',
             'Fashion',
             'Art',
-            # Add more tags as needed
         ]
 
         for tag_name in predefined_tags:
