@@ -35,10 +35,12 @@ class PostList(generics.ListCreateAPIView):
     ]
 
     def perform_create(self, serializer):
-        tags_data = self.request.data.getlist('tags', [])  # Use getlist to get multiple values
-        tags = [Tag.objects.get_or_create(name=tag_name)[0] for tag_name in tags_data]
-        serializer.save(owner=self.request.user)
-        serializer.instance.tags.set(tags)
+
+        tags_data = self.request.data.get('tags', [])
+        tags = Tag.objects.filter(name__in=tags_data)
+        post = serializer.save(owner=self.request.user)
+        post.tags.set(tags)
+
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
 
