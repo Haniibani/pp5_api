@@ -24,27 +24,6 @@ class Post(models.Model):
         ('walden', 'Walden'),
         ('xpro2', 'X-pro II')
     ]
-    predefined_tags = [
-        ('Technology', 'Technology'),
-        ('Travel', 'Travel'),
-        ('Food', 'Food'),
-        ('Fashion', 'Fashion'),
-        ('Art', 'Art'),
-        ('Science', 'Science'),
-        ('Health', 'Health'),
-        ('Music', 'Music'),
-        ('Sports', 'Sports'),
-        ('Nature', 'Nature'),
-        ('Business', 'Business'),
-        ('Education', 'Education'),
-        ('Photography', 'Photography'),
-        ('History', 'History'),
-        ('Literature', 'Literature'),
-        ('Movies', 'Movies'),
-        ('Gaming', 'Gaming'),
-        ('Cooking', 'Cooking'),
-        ('Fitness', 'Fitness'),
-    ]
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -56,7 +35,7 @@ class Post(models.Model):
     image_filter = models.CharField(
         max_length=32, choices=image_filter_choices, default='normal'
     )
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField('tags.Tag', blank=True)
 
     class Meta:
         ordering = ['-created_at']
