@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from tags.serializers import TagSerializer
+from tags.models import Tag
 from posts.models import Post
 from likes.models import Like
 
@@ -12,7 +12,7 @@ class PostSerializer(serializers.ModelSerializer):
     like_id = serializers.SerializerMethodField()
     likes_count = serializers.ReadOnlyField()
     comments_count = serializers.ReadOnlyField()
-    tags = TagSerializer(many=True)
+    tags = serializers.PrimaryKeyRelatedField(many=True, queryset=Tag.objects.all())
 
     def validate_image(self, value):
         if value.size > 2 * 1024 * 1024:
