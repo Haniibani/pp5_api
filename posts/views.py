@@ -37,7 +37,9 @@ class PostList(generics.ListCreateAPIView):
     ]
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        tag_names = self.request.data.get('tags', '').split(",")
+        post = serializer.save(owner=self.request.user)
+        post.tags.set(tag_names)
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
