@@ -13,11 +13,10 @@ class PostSerializer(serializers.ModelSerializer):
     like_id = serializers.SerializerMethodField()
     likes_count = serializers.ReadOnlyField()
     comments_count = serializers.ReadOnlyField()
-    tags = serializers.SlugRelatedField(
-        many=True,
-        read_only=False,
+    tag = serializers.SlugRelatedField(
         queryset=Tag.objects.all(),
-        slug_field='name'
+        slug_field='name',
+        allow_null=True
     )
 
     def validate_image(self, value):
@@ -63,5 +62,5 @@ class PostSerializer(serializers.ModelSerializer):
             "like_id",
             "likes_count",
             "comments_count",
-            "tags",
+            "tag",
         ]

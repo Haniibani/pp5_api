@@ -4,7 +4,7 @@ from rest_framework import filters, generics, permissions
 
 from pp5_api.permissions import IsOwnerOrReadOnly
 
-from .models import Post
+from .models import Post, Tag
 from .serializers import PostSerializer
 
 
@@ -24,7 +24,7 @@ class PostList(generics.ListCreateAPIView):
         "owner__followed__owner__profile",
         "likes__owner__profile",
         "owner__profile",
-        "tags",
+        "tag",
     ]
     search_fields = [
         "owner__username",
@@ -37,9 +37,12 @@ class PostList(generics.ListCreateAPIView):
     ]
 
     def perform_create(self, serializer):
-        tag_names = self.request.data.get('tags', '').split(",")
-        post = serializer.save(owner=self.request.user)
-        post.tags.set(tag_names)
+            tag_name = self.request.data.get('tag', None)
+            if tag_name:
+                tag = Tag.objects.get(name=tag_name)
+                serializer.save(owner=self.request.user, tag=tag)
+            else:
+                serializer.save(owner=self.request.user)
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):

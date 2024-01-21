@@ -19,21 +19,24 @@ class PostTests(TestCase):
         self.client = APIClient()
         self.client.login(username="testuser", password="testpassword")
 
-        # Manually create a post and associate predefined tags with it
+        # Check if the tag exists, otherwise create it
+        try:
+            self.tag = Tag.objects.get(name="Technology")
+        except Tag.DoesNotExist:
+            self.tag = Tag.objects.create(name="Technology")
+
+        # Manually create a post and associate it with the test tag
         self.post = Post.objects.create(
-            owner=self.user, title="Test Post", content="Test Content"
+            owner=self.user, title="Test Post", content="Test Content", tag=self.tag
         )
-        self.tag1 = Tag.objects.get(name="Technology")
-        self.tag2 = Tag.objects.get(name="Travel")
-        self.post.tags.add(self.tag1, self.tag2)
 
     def test_create_post(self):
-        # Test retrieving a post and verify it has the correct number of tags
+        # Test retrieving a post and verify it has the correct tag
         response = self.client.get(f"/posts/{self.post.id}/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         post_response_data = json.loads(response.content)
-        self.assertEqual(len(post_response_data.get("tags", [])), 2)
+        self.assertEqual(post_response_data.get("tag", ""), "Technology")
 
     def test_get_post_list(self):
         # Test retrieving the list of posts

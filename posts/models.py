@@ -36,7 +36,7 @@ class Post(models.Model):
     image_filter = models.CharField(
         max_length=32, choices=image_filter_choices, default="normal"
     )
-    tags = models.ManyToManyField("tags.Tag", blank=True)
+    tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
 
     class Meta:
         ordering = ["-created_at"]

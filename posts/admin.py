@@ -17,7 +17,7 @@ class PostAdmin(admin.ModelAdmin):
         (
             None,
             {"fields": (
-                "owner", "title", "content", "image", "image_filter", "tags"
+                "owner", "title", "content", "image", "image_filter", "tag"
             )},
         ),
         (
