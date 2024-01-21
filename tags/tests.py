@@ -1,7 +1,8 @@
 from django.test import TestCase
-from django.urls import reverse 
+from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
+
 from .models import Tag
 from .serializers import TagSerializer
 
@@ -15,10 +16,10 @@ class TagSerializerTestCase(TestCase):
         """
         Test that the serializer can serialize Tag instances with valid data.
         """
-        tag_data = {'name': 'Test Tag'}
+        tag_data = {"name": "Test Tag"}
         serializer = TagSerializer(data=tag_data)
         self.assertTrue(serializer.is_valid())
-        self.assertEqual(serializer.validated_data['name'], 'Test Tag')
+        self.assertEqual(serializer.validated_data["name"], "Test Tag")
 
     def test_serializer_with_empty_data(self):
         """
@@ -26,7 +27,7 @@ class TagSerializerTestCase(TestCase):
         """
         serializer = TagSerializer(data={})
         self.assertFalse(serializer.is_valid())
-        self.assertIn('name', serializer.errors)
+        self.assertIn("name", serializer.errors)
 
 
 class TagListViewTestCase(TestCase):
@@ -40,14 +41,30 @@ class TagListViewTestCase(TestCase):
         Set up data for the entire TestCase.
         """
         cls.predefined_tag_names = [
-            'Technology', 'Travel', 'Food', 'Fashion', 'Art',
-            'Science', 'Health', 'Music', 'Sports', 'Nature',
-            'Business', 'Education', 'Photography', 'History',
-            'Literature', 'Movies', 'Gaming', 'Cooking', 'Fitness'
+            "Technology",
+            "Travel",
+            "Food",
+            "Fashion",
+            "Art",
+            "Science",
+            "Health",
+            "Music",
+            "Sports",
+            "Nature",
+            "Business",
+            "Education",
+            "Photography",
+            "History",
+            "Literature",
+            "Movies",
+            "Gaming",
+            "Cooking",
+            "Fitness",
         ]
         # Assuming these tags are already created in the database
         cls.predefined_tags = [
-            Tag.objects.get(name=tag_name) for tag_name in cls.predefined_tag_names
+            Tag.objects.get(name=tag_name)
+            for tag_name in cls.predefined_tag_names
         ]
 
     def setUp(self):
@@ -55,7 +72,7 @@ class TagListViewTestCase(TestCase):
         Set up data for each individual test.
         """
         self.client = APIClient()
-        self.url = reverse('tag-list')  # URL for the TagList view
+        self.url = reverse("tag-list")  # URL for the TagList view
 
     def test_list_tags(self):
         """
@@ -65,16 +82,17 @@ class TagListViewTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         # Adjusting for pagination in the response
-        returned_tags = response.data.get('results', [])
-        self.assertEqual(len(returned_tags), 10)  # Expecting 10 tags on the first page
+        returned_tags = response.data.get("results", [])
+        # Expecting 10 tags on the first page
+        self.assertEqual(len(returned_tags), 10)
 
         # Optionally, testing the total count of tags
-        self.assertEqual(response.data.get('count'), len(self.predefined_tags))
+        self.assertEqual(response.data.get("count"), len(self.predefined_tags))
 
     def test_create_tag(self):
         """
         Test creating a new tag using POST request (expecting 403 forbidden).
         """
-        data = {'name': 'New Tag'}
-        response = self.client.post(self.url, data, format='json')
+        data = {"name": "New Tag"}
+        response = self.client.post(self.url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

@@ -4,16 +4,15 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('tags', '0002_add_predefined_tags'),
-        ('posts', '0001_initial'),
+        ("tags", "0002_add_predefined_tags"),
+        ("posts", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='post',
-            name='tags',
-            field=models.ManyToManyField(blank=True, to='tags.Tag'),
+            model_name="post",
+            name="tags",
+            field=models.ManyToManyField(blank=True, to="tags.Tag"),
         ),
     ]

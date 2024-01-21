@@ -1,9 +1,11 @@
 from django.db.models import Count
-from rest_framework import filters, permissions, generics
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Post, Tag
-from .serializers import PostSerializer
+from rest_framework import filters, generics, permissions
+
 from pp5_api.permissions import IsOwnerOrReadOnly
+
+from .models import Post
+from .serializers import PostSerializer
 
 
 class PostList(generics.ListCreateAPIView):
