@@ -45,6 +45,46 @@ Our backend is powered by a robust stack that ensures efficiency and scalability
 - **Caching**: Redis for enhancing application performance.
 - **Task Queue**: Celery for handling asynchronous tasks and scheduled jobs.
 
+## API Endpoints
+
+### User Endpoints
+- **Create User (`POST /users`)**: Register a new user.
+- **Retrieve User (`GET /users/{id}`)**: Get details of a specific user.
+
+### Profile Endpoints
+- **Create Profile (`POST /profiles`)**: Create a new profile.
+- **Retrieve Profile (`GET /profiles/{id}`)**: Get details of a specific profile.
+- **Update Profile (`PUT /profiles/{id}`)**: Update an existing profile.
+
+### Post Endpoints
+- **Create Post (`POST /posts`)**: Create a new post.
+- **Retrieve Post (`GET /posts/{id}`)**: Get details of a specific post.
+- **Update Post (`PUT /posts/{id}`)**: Update an existing post.
+- **Delete Post (`DELETE /posts/{id}`)**: Remove a specific post.
+
+### Tag Endpoints
+- **Retrieve Tag (`GET /tags/{id}`)**: Get details of a specific tag.
+
+### Comment Endpoints
+- **Create Comment (`POST /comments`)**: Add a new comment to a post.
+- **Retrieve Comment (`GET /comments/{id}`)**: Get details of a specific comment.
+- **Update Comment (`PUT /comments/{id}`)**: Update an existing comment.
+- **Delete Comment (`DELETE /comments/{id}`)**: Remove a specific comment.
+
+### Like Endpoints
+- **Create Like (`POST /likes`)**: Like a post.
+- **Delete Like (`DELETE /likes/{id}`)**: Unlike a post.
+
+### Follow Endpoints
+- **Create Follow (`POST /follows`)**: Follow a user.
+- **Retrieve Follow (`GET /follows/{id}`)**: Get follow details.
+- **Delete Follow (`DELETE /follows/{id}`)**: Unfollow a user.
+
+### Notification Endpoints
+- **Create Notification (`POST /notifications`)**: Create a new notification.
+- **Retrieve Notification (`GET /notifications/{id}`)**: Get details of a specific notification.
+- **Update Notification (`PUT /notifications/{id}`)**: Update an existing notification.
+
 ## Error Handling
 Our API uses standard HTTP status codes to indicate the success or failure of an API request:
 - `200 OK`: Successful request.
