@@ -3,22 +3,38 @@
 ## Project Description
 Caption of the day is a dynamic social media platform designed for users to engage and share their experiences. This platform allows users to create profiles and posts, follow other profiles, like posts, and much more, providing a rich and interactive user experience.
 
-## User Stories
+## Epics and User Stories
 Our application is built with the following user experiences in mind:
 
-- **Community Engagement**: Users can comment on posts to engage with the community.
-- **Profile Customization**: New users can create profiles to interact with the application and personalize their experience.
-- **Social Connectivity**: Users can follow others to stay updated on their activity and like posts to show appreciation.
-- **Content Discovery**: Users have the ability to search and filter posts to find content that interests them.
-- **Content Management**: Users can create, edit, or delete their own posts to manage shared content.
-- **Notifications**: Users receive notifications about interactions to stay informed.
-- **Content Categorization**: Users can tag posts to categorize and help others find content.
-- **Content Filtering**: Tags allow users to quickly find relevant content and people.
-- **Accessibility**: The application is designed to be accessible from various environments, ensuring consistent functionality.
-- **Security**: Session handling and authentication processes are managed securely.
-- **Data Management**: Users can perform actions on data records related to their interests.
-- **System Access**: Users can register and log in to access personalized features and content.
-- **Authorization**: Ensuring that only authorized users can modify content.
+#### Epic: User Management
+- **User Story**: Profile Creation for New Users [#2](https://github.com/Haniibani/pp5_api/issues/2)
+- **User Story**: Secure Authentication System [#3](https://github.com/Haniibani/pp5_api/issues/3)
+- **User Story**: Registration and Personalized Access [#4](https://github.com/Haniibani/pp5_api/issues/4)
+
+#### Epic: Content Management
+- **User Story**: Post Creation and Sharing [#5](https://github.com/Haniibani/pp5_api/issues/5)
+- **User Story**: Post Management [#6](https://github.com/Haniibani/pp5_api/issues/6)
+- **User Story**: Data Record Interactions [#7](https://github.com/Haniibani/pp5_api/issues/7)
+
+#### Epic: Social Interactions
+- **User Story**: Liking Posts to Show Appreciation [#8](https://github.com/Haniibani/pp5_api/issues/8)
+- **User Story**: Engaging with Community Through Comments [#9](https://github.com/Haniibani/pp5_api/issues/9)
+- **User Story**: Following Users for Updates [#10](https://github.com/Haniibani/pp5_api/issues/10)
+
+#### Epic: User Notifications
+- **User Story**: Content Interaction Notifications [#11](https://github.com/Haniibani/pp5_api/issues/11)
+
+#### Epic: Content Discovery
+- **User Story**: Tagging Posts for Categorization [#12](https://github.com/Haniibani/pp5_api/issues/12)
+- **User Story**: Enhanced Post Searchability [#13](https://github.com/Haniibani/pp5_api/issues/13)
+- **User Story**: Tag-Based Post Filtering [#14](https://github.com/Haniibani/pp5_api/issues/14)
+
+#### Epic: Platform Compatibility
+- **User Story**: Cross-Environment Accessibility [#15](https://github.com/Haniibani/pp5_api/issues/15)
+
+#### Epic: Security and Authentication
+- **User Story**: Secure Session Management [#16](https://github.com/Haniibani/pp5_api/issues/16)
+- **User Story**: Ensuring Authorized Content Modification [#17](https://github.com/Haniibani/pp5_api/issues/17)
 
 ## Entity Relationship Diagram
 ![Alt Text](/assets/Lucidchart.png)
